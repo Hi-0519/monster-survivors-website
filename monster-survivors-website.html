@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monster Survivors - Action Survival Game | Play Online Free</title>
+  <meta name="description" content="Survive endless waves of monsters in this thrilling action game. Play Monster Survivors online for free now!">
+  <link rel="canonical" href="https://monstersurvivors.baby">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Monster Survivors - Action Survival Game">
+  <meta property="og:description" content="Survive endless waves of monsters in this thrilling action survival game. Play for free now!">
+  <meta property="og:url" content="https://monstersurvivors.baby">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Monster Survivors - Action Survival Game">
+  <meta name="twitter:description" content="Survive endless waves of monsters in this thrilling action survival game. Play for free now!">
+  
+  <!-- Favicon - You'll need to add actual favicon files -->
+  <link rel="icon" type="image/png" href="/favicon.png">
+  
+  <!-- Tailwind CSS via CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <style>
+    /* 明亮主题增强色彩方案 */
+    :root {
+      --primary: #0071e3;
+      --primary-dark: #0058b9;
+      --primary-light: #5ac8fa;
+      --accent1: #ff375f;
+      --accent2: #5856d6;
+      --accent3: #34c759;
+      --dark-text: #1d1d1f;
+      --light-bg: #ffffff;
+      --off-white: #f5f5f7;
+      --subtle-gray: #f9f9fc;
+      --medium-gray: #86868b;
+      --highlight-glow: rgba(0, 113, 227, 0.25);
+      
+      --primary-gradient: linear-gradient(135deg, #0071e3 0%, #5ac8fa 100%);
+      --accent-gradient: linear-gradient(135deg, #5856D6 0%, #FF2D55 100%);
+      --subtle-gradient: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+      --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --hover-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    /* 全局样式 */
+    body {
+      background-color: var(--light-bg);
+      color: var(--dark-text);
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* 微妙背景纹理 - 非常轻的点状图案 */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(var(--off-white) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    /* 游戏标题超级增强版 */
+    .game-title-container {
+      position: relative;
+      margin: 0 auto;
+      padding: 1rem 0;
+      text-align: center;
+      max-width: 800px;
+      overflow: hidden;
+    }
+
+    .game-title {
+      font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 900; /* 超粗体 */
+      font-size: 4.5rem;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-image: linear-gradient(135deg, #0071e3 0%, #5ac8fa 50%, #ff375f 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 8s ease-in-out infinite alternate;
+      position: relative;
+      display: inline-block;
+      transform: perspective(1000px) rotateX(0deg);
+      transition: all 0.5s ease;
+      text-shadow: 0 5px 15px rgba(0, 113, 227, 0.2);
+      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+    }
+
+    /* 闪耀动画 */
+    @keyframes shine {
+      0% {
+        background-position: 0% 50%;
+        transform: perspective(1000px) rotateX(0deg);
+      }
+      50% {
+        background-position: 100% 50%;
+        transform: perspective(1000px) rotateX(3deg);
+      }
+      100% {
+        background-position: 0% 50%;
+        transform: perspective(1000px) rotateX(0deg);
+      }
+    }
+
+    /* 标题3D效果 */
+    .game-title::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0.05em;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(135deg, #0071e3 0%, #5ac8fa 50%, #ff375f 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.3;
+      filter: blur(8px);
+      transform: translateZ(-10px);
+      animation: shimmer 8s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 0% 50%;
+        opacity: 0.2;
+        filter: blur(8px);
+      }
+      50% {
+        background-position: 100% 50%;
+        opacity: 0.5;
+        filter: blur(12px);
+      }
+      100% {
+        background-position: 0% 50%;
+        opacity: 0.2;
+        filter: blur(8px);
+      }
+    }
+
+    /* 标题微妙浮动效果 */
+    .game-title-float {
+      animation: title-float 6s ease-in-out infinite;
+    }
+
+    @keyframes title-float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    /* 标题装饰元素 */
+    .title-decoration::before,
+    .title-decoration::after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      border-radius: 5px;
+      background: linear-gradient(90deg, transparent, #0071e3, transparent);
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      opacity: 0.7;
+    }
+
+    .title-decoration::after {
+      height: 3px;
+      bottom: -12px;
+      width: 120px;
+      background: linear-gradient(90deg, transparent, #ff375f, transparent);
+    }
+
+    /* 标题周围的怪物图标 */
+    .monster-icon {
+      position: absolute;
+      font-size: 1.5rem;
+      opacity: 0;
+      animation: appear-rotate 0.8s forwards, float-around 6s ease-in-out infinite;
+    }
+
+    @keyframes appear-rotate {
+      0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+      }
+      100% {
+        opacity: 0.8;
+        transform: scale(1) rotate(360deg);
+      }
+    }
+
+    @keyframes float-around {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(5px, -5px) rotate(5deg);
+      }
+      50% {
+        transform: translate(0, -10px) rotate(0deg);
+      }
+      75% {
+        transform: translate(-5px, -5px) rotate(-5deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+    }
+
+    /* 头部区域样式 */
+    header {
+      background: var(--subtle-gradient);
+      position: relative;
+      overflow: hidden;
+      padding: 3rem 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 30%, rgba(90, 200, 250, 0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    header .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    header p {
+      color: var(--dark-text);
+      opacity: 0.7;
+      max-width: 600px;
+      margin: 1rem auto 0;
+      font-size: 1.25rem;
+    }
+
+    /* 按钮超级增强版 */
+    .super-button {
+      position: relative;
+      display: inline-block;
+      padding: 12px 35px;
+      background-image: linear-gradient(135deg, #0071e3 0%, #5ac8fa 100%);
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 20px rgba(0, 113, 227, 0.3);
+      cursor: pointer;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .super-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(135deg, #5ac8fa 0%, #0071e3 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .super-button:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(0, 113, 227, 0.4);
+    }
+
+    .super-button:hover::before {
+      opacity: 1;
+    }
+
+    /* 按钮点击效果 */
+    .super-button:active {
+      transform: translateY(2px) scale(0.98);
+      box-shadow: 0 5px 10px rgba(0, 113, 227, 0.3);
+    }
+
+    /* 按钮涟漪效果 */
+    .super-button .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.5);
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      z-index: -1;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(2.5);
+        opacity: 0;
+      }
+    }
+
+    /* 游戏框架容器超级增强 */
+    .iframe-super-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 比例 */
+      height: 0;
+      overflow: hidden;
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: 24px;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background-color: white;
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(0, 0, 0, 0.02);
+    }
+
+    .iframe-super-container::before {
+      content: "";
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      background: linear-gradient(135deg, #0071e3 0%, #5ac8fa 50%, #ff375f 100%);
+      z-index: -1;
+      border-radius: 28px;
+      opacity: 0.5;
+      filter: blur(8px);
+      transition: all 0.3s ease;
+    }
+
+    .iframe-super-container:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 
+        0 30px 60px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(0, 0, 0, 0.03);
+    }
+
+    .iframe-super-container:hover::before {
+      opacity: 0.8;
+      filter: blur(12px);
+    }
+
+    .iframe-super-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 24px;
+    }
+
+    /* 脉冲边框效果 */
+    @keyframes pulse-border {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(0, 113, 227, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 113, 227, 0);
+      }
+    }
+
+    .pulse-effect {
+      animation: pulse-border 2s infinite;
+    }
+
+    /* 滚动提示 */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: #0071e3;
+      animation: bounce 2s infinite;
+      opacity: 0.7;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+
+    /* 主内容区域优化 */
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      position: relative;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      display: inline-block;
+      background-image: linear-gradient(135deg, #1d1d1f 0%, #0071e3 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 5px;
+      background: linear-gradient(90deg, #0071e3, #5ac8fa);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .section-title:hover::after {
+      width: 100%;
+    }
+
+    /* 特性卡片增强 */
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(90, 200, 250, 0.1) 0%, rgba(0, 113, 227, 0.1) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, #0071e3, #5ac8fa);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover::after {
+      width: 7px;
+    }
+
+    .feature-card h3 {
+      background-image: linear-gradient(135deg, #1d1d1f 0%, #0071e3 70%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover h3 {
+      transform: translateX(5px);
+    }
+
+    /* 生存技巧部分样式 */
+    .tips-section {
+      background: var(--subtle-gray);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      box-shadow: var(--card-shadow);
+    }
+
+    .tips-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top right, rgba(88, 86, 214, 0.08) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .tip-card {
+      padding: 1.5rem;
+      background: white;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .tip-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .tip-card h3 {
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--dark-text);
+    }
+
+    /* 页脚样式 */
+    footer {
+      background: var(--subtle-gray);
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      padding: 2rem 0;
+    }
+
+    footer a {
+      color: var(--accent-blue);
+      transition: all 0.2s ease;
+    }
+
+    footer a:hover {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* 小型装饰元素 */
+    .decorative-element {
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.8;
+      filter: blur(40px);
+      transition: transform 0.3s ease;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .game-title {
+        font-size: 3.2rem;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tip-card {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .game-title {
+        font-size: 2.5rem;
+      }
+      
+      .section-title {
+        font-size: 1.75rem;
+      }
+      
+      .super-button {
+        padding: 10px 25px;
+        font-size: 1rem;
+      }
+      
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- 页面装饰元素将由JavaScript添加 -->
+  
+  <!-- Header section -->
+  <header class="w-full">
+    <div class="container mx-auto px-4 py-6 text-center">
+      <h1 class="game-title title-decoration" data-text="Monster Survivors">Monster Survivors</h1>
+      <p class="text-xl mt-3 mx-auto max-w-2xl">Survive the night, defeat the hordes, become the legend.</p>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main class="flex-grow">
+    <!-- Game iframe section -->
+    <section class="container mx-auto px-4 py-8">
+      <div class="iframe-super-container floating">
+        <iframe src="https://cloud.onlinegames.io/games/2025/unity/monster-survivors/index-og.html" allowfullscreen></iframe>
+      </div>
+      <div class="text-center mt-6">
+        <button class="super-button text-lg">Fullscreen Mode</button>
+      </div>
+    </section>
+
+    <!-- Game description section -->
+    <section class="container mx-auto px-4 py-8">
+      <h2 class="section-title text-3xl">About Monster Survivors</h2>
+      <div class="prose max-w-none">
+        <p class="text-lg">Monster Survivors is an adrenaline-pumping action survival game where you must outlast increasingly difficult waves of monsters. As time progresses, your character grows stronger, unlocking new abilities and weapons to face the escalating challenge.</p>
+        
+        <h2 class="section-title text-2xl mt-8">How to Play</h2>
+        <p>Use WASD or arrow keys to move your character. Attacks happen automatically as monsters come within range. Collect experience gems to level up and choose new abilities. Survive as long as possible to achieve the highest score!</p>
+        
+        <h2 class="section-title text-2xl mt-8">Game Features</h2>
+        <div class="feature-grid grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div class="feature-card">
+            <h3 class="text-xl font-semibold mb-2">Multiple Characters</h3>
+            <p>Choose from a roster of unique heroes, each with their own special abilities and starting weapons.</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="text-xl font-semibold mb-2">Weapon Arsenal</h3>
+            <p>Collect and upgrade dozens of weapons and passive items to create your own unstoppable build.</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="text-xl font-semibold mb-2">Endless Challenges</h3>
+            <p>Face procedurally generated levels for unlimited replayability and unique experiences.</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="text-xl font-semibold mb-2">Epic Boss Battles</h3>
+            <p>Test your skills against massive bosses that appear every few minutes with increasing difficulty.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Game tips section -->
+    <section class="container mx-auto px-4 py-8 tips-section my-8">
+      <h2 class="section-title text-2xl mb-4 ml-4 relative z-10">Survival Tips</h2>
+      <div class="grid md:grid-cols-2 gap-6 p-4 relative z-10">
+        <div class="tip-card">
+          <h3 class="text-xl font-semibold mb-2">Early Game Strategy</h3>
+          <p>Focus on movement speed upgrades early to help you avoid monsters while your weapons are still weak. Prioritize experience gems to level up faster.</p>
+        </div>
+        <div class="tip-card">
+          <h3 class="text-xl font-semibold mb-2">Mid Game Power</h3>
+          <p>By the 10-minute mark, you should have a main weapon and 2-3 support weapons. Look for synergies between your items and character abilities.</p>
+        </div>
+        <div class="tip-card">
+          <h3 class="text-xl font-semibold mb-2">Late Game Survival</h3>
+          <p>After 20 minutes, enemies become extremely numerous. Area-of-effect weapons and defensive items become essential for survival.</p>
+        </div>
+        <div class="tip-card">
+          <h3 class="text-xl font-semibold mb-2">Boss Strategy</h3>
+          <p>When facing bosses, focus on constant movement in a circular pattern. This helps avoid their attacks while your weapons automatically damage them.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-6 mt-auto">
+    <div class="container mx-auto px-4 text-center text-gray-600">
+      <p>&copy; 2025 Monster Survivors. All rights reserved.</p>
+      <p class="mt-2">
+        <a href="#" class="hover:underline mx-2">Privacy Policy</a>
+        <a href="#" class="hover:underline mx-2">Terms of Service</a>
+        <a href="#" class="hover:underline mx-2">Contact</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for enhanced effects -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 初始化所有增强效果
+      initEnhancedEffects();
+      
+      // 设置全屏按钮功能
+      setupFullscreenButton();
+    });
+    
+    // 初始化视觉效果
+    function initEnhancedEffects() {
+      // 设置游戏标题的数据属性
+      setupGameTitle();
+      
+      // 添加标题周围的装饰性怪物图标
+      addMonsterIcons();
+      
+      // 添加按钮点击涟漪效果
+      setupButtonEffects();
+      
+      // 添加滚动效果
+      setupScrollEffects();
+      
+      // 添加视差效果
+      setupParallaxEffects();
+      
+      // 添加装饰性元素
+      addDecorativeElements();
+      
+      // 添加背景图案
+      addBackgroundPattern();
+    }
+    
+    // 添加背景图案
+    function addBackgroundPattern() {
+      const bgPattern = document.createElement('div');
+      bgPattern.className = 'bg-pattern';
+      document.body.appendChild(bgPattern);
+    }
+    
+    // 设置游戏标题效果
+    function setupGameTitle() {
+      const gameTitle = document.querySelector('.game-title');
+      if (gameTitle) {
+        gameTitle.setAttribute('data-text', gameTitle.textContent);
+        
+        // 添加额外的标题增强类
+        gameTitle.classList.add('game-title-float');
+        
+        // 创建一个标题容器
+        const parent = gameTitle.parentNode;
+        const container = document.createElement('div');
+        container.className = 'game-title-container';
+        
+        // 移动标题到新容器
+        parent.insertBefore(container, gameTitle);
+        container.appendChild(gameTitle);
+      }
+    }
+    
+    // 添加装饰性怪物图标在标题周围
+    function addMonsterIcons() {
+      const titleContainer = document.querySelector('.game-title-container');
+      if (!titleContainer) return;
+      
+      // 怪物表情符号和字体图标
+      const monsters = ['👾', '👹', '👻', '👽', '🧟', '🦇', '🕷️', '🐉'];
+      
+      // 定义图标位置 (相对于容器)
+      const positions = [
+        { top: '-20px', left: '10%', delay: '0s' },
+        { top: '-15px', right: '15%', delay: '0.2s' },
+        { top: '40%', left: '0', delay: '0.4s' },
+        { top: '30%', right: '0', delay: '0.6s' },
+        { bottom: '-10px', left: '20%', delay: '0.8s' },
+        { bottom: '-5px', right: '25%', delay: '1s' }
+      ];
+      
+      // 创建并放置怪物图标
+      positions.forEach((pos, index) => {
+        const monsterIcon = document.createElement('span');
+        monsterIcon.className = 'monster-icon';
+        monsterIcon.textContent = monsters[index % monsters.length];
+        
+        // 设置位置
+        Object.keys(pos).forEach(key => {
+          monsterIcon.style[key] = pos[key];
+        });
+        
+        // 设置动画延迟
+        monsterIcon.style.animationDelay = pos.delay;
+        
+        // 添加到容器
+        titleContainer.appendChild(monsterIcon);
+      });
+    }
+    
+    // 设置按钮涟漪点击效果
+    function setupButtonEffects() {
+      const buttons = document.querySelectorAll('.super-button');
+      
+      buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          // 创建涟漪元素
+          const ripple = document.createElement('span');
+          ripple.classList.add('ripple');
+          this.appendChild(ripple);
+          
+          // 设置涟漪位置
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height) * 2;
+          const x = e.clientX - rect.left - size/2;
+          const y = e.clientY - rect.top - size/2;
+          
+          ripple.style.width = ripple.style.height = `${size}px`;
+          ripple.style.left = `${x}px`;
+          ripple.style.top = `${y}px`;
+          
+          // 动画结束后移除涟漪元素
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      });
+    }
+    
+    // 设置滚动效果
+    function setupScrollEffects() {
+      // 创建IntersectionObserver以检测元素进入视口
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      // 要观察的元素
+      const elements = document.querySelectorAll('.feature-card, .section-title, .super-button, .iframe-super-container, .tip-card');
+      
+      // 添加初始样式和观察元素
+      elements.forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = `all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${index * 0.1}s`;
+        
+        observer.observe(el);
+      });
+      
+      // 添加滚动指示器
+      addScrollIndicator();
+      
+      // 添加CSS以处理动画
+      document.head.insertAdjacentHTML('beforeend', `
+        <style>
+          .animate-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+          }
+        </style>
+      `);
+    }
+    
+    // 添加滚动指示器
+    function addScrollIndicator() {
+      const header = document.querySelector('header');
+      if (!header) return;
+      
+      const indicator = document.createElement('div');
+      indicator.className = 'scroll-indicator';
+      indicator.innerHTML = '&darr;';
+      
+      indicator.addEventListener('click', () => {
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: 'smooth'
+        });
+      });
+      
+      header.appendChild(indicator);
+      
+      // 滚动时隐藏指示器
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          indicator.style.opacity = '0';
+          setTimeout(() => {
+            indicator.style.display = 'none';
+          }, 300);
+        }
+      });
+    }
+    
+    // 设置视差效果
+    function setupParallaxEffects() {
+      window.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        // 游戏标题的轻微视差
+        const gameTitle = document.querySelector('.game-title');
+        if (gameTitle) {
+          const moveX = (mouseX - 0.5) * 20;
+          const moveY = (mouseY - 0.5) * 20;
+          gameTitle.style.transform = `perspective(1000px) rotateX(${moveY}deg) rotateY(${moveX}deg)`;
+        }
+        
+        // 装饰元素的视差
+        const decorations = document.querySelectorAll('.decorative-element');
+        decorations.forEach(el => {
+          const speed = parseFloat(el.getAttribute('data-speed') || 1);
+          const moveX = (mouseX - 0.5) * 40 * speed;
+          const moveY = (mouseY - 0.5) * 40 * speed;
+          el.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+      });
+    }
+    
+    // 添加装饰性元素
+    function addDecorativeElements() {
+      const container = document.querySelector('body');
+      
+      // 添加装饰性形状
+      const shapes = [
+        { type: 'circle', color: 'rgba(0, 113, 227, 0.1)', size: '150px', top: '15%', right: '5%', speed: 0.5 },
+        { type: 'square', color: 'rgba(88, 86, 214, 0.07)', size: '100px', top: '60%', left: '3%', speed: 0.7 },
+        { type: 'circle', color: 'rgba(255, 55, 95, 0.05)', size: '200px', bottom: '10%', right: '10%', speed: 0.3 }
+      ];
+      
+      shapes.forEach(shape => {
+        const element = document.createElement('div');
+        element.className = 'decorative-element';
+        element.setAttribute('data-speed', shape.speed);
+        
+        // 设置样式
+        element.style.position = 'absolute';
+        element.style.width = element.style.height = shape.size;
+        element.style.backgroundColor = shape.color;
+        element.style.borderRadius = shape.type === 'circle' ? '50%' : '10%';
+        element.style.pointerEvents = 'none';
+        element.style.zIndex = '-1';
+        element.style.opacity = '0.8';
+        element.style.filter = 'blur(40px)';
+        
+        // 设置位置
+        if (shape.top) element.style.top = shape.top;
+        if (shape.left) element.style.left = shape.left;
+        if (shape.right) element.style.right = shape.right;
+        if (shape.bottom) element.style.bottom = shape.bottom;
+        
+        container.appendChild(element);
+      });
+    }
+
+    // 设置全屏按钮功能
+    function setupFullscreenButton() {
+      const fullscreenBtn = document.querySelector('.super-button');
+      const iframe = document.querySelector('iframe');
+      
+      if (!fullscreenBtn || !iframe) return;
+      
+      fullscreenBtn.addEventListener('click', function() {
+        if (iframe.requestFullscreen) {
+          iframe.requestFullscreen();
+        } else if (iframe.webkitRequestFullscreen) { /* Safari */
+          iframe.webkitRequestFullscreen();
+        } else if (iframe.msRequestFullscreen) { /* IE11 */
+          iframe.msRequestFullscreen();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
